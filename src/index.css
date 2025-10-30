@@ -1,0 +1,51 @@
+/*
+ * ==============================================================================
+ * LLHS Finance Club Website - Global stylesheet, Tailwind CSS (index.css)
+ * ==============================================================================
+ *
+ * This file serves as the primary entry point for Tailwind's base styles,
+ * components, and utilities. Custom animations are defined below to provide
+ * reusable visual effects throughout the site.
+ *
+ * Authors: Alexander Alessi & Nicolas Alessi
+ * Copyright (c) 2025 LLHS Finance Club. All rights reserved.
+ *
+ * ===========================================================================
+ */
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Pulse animation for circular elements (e.g., loading indicators, highlights) */
+@keyframes circle-pulse {
+  0% {
+    box-shadow: 0 0 0 0 rgba(255, 215, 0, 0.7);
+  }
+  70% {
+    box-shadow: 0 0 0 10px rgba(255, 215, 0, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(255, 215, 0, 0);
+  }
+}
+
+/* Utility class to apply the circle pulse animation */
+.animate-circle-pulse {
+  animation: circle-pulse 2.5s ease-out forwards;
+}
+
+/* Progressive bar fill animation (e.g., progress bars, timeline reveals) */
+@keyframes grow-to-end {
+  from {
+    width: 0%;
+  }
+  to {
+    width: 100%;
+  }
+}
+
+/* Utility class to apply the grow-to-end animation */
+.animate-grow-to-end {
+  animation: grow-to-end 2s ease-out forwards;
+}

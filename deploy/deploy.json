@@ -1,0 +1,12 @@
+{
+	"environments": {
+		"stag": {
+			"bucket_url": "NA",
+			"cf_distro": "NA"
+		},
+		"prod": {
+			"bucket_url": "s3://llhsfinance",
+			"cf_distro": "E24U6JG9H5UTJL"
+		}
+	}
+}
