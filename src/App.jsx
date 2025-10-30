@@ -4,7 +4,7 @@
  * ==============================================================================
  *
  * This component acts as the root of the Single Page Application (SPA).
- * It manages the global page state, defines the core color scheme, and handles
+ * It manages the global page state and handles
  * the header, main content routing, and persistent footer.
  *
  * Authors: Alexander Alessi & Nicolas Alessi
