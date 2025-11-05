@@ -44,7 +44,7 @@ const Portfolio = () => (
 
     {/* Last Updated */}
     <p className="text-center text-sm text-gray-500 italic">
-      Last updated: October 2025
+      Last updated: November 2025
     </p>
 
     {/* Real Portfolio Table */}

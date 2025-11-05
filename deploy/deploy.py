@@ -111,7 +111,7 @@ def run_deploy(conf, env, proj_dir, profile, verify_ssl):
 
     # Invalidate the cache
     cf_distro = c["environments"][env]["cf_distro"]
-    invalidation = "/index.html"
+    invalidation = "/*"
     timestamp = str(time.time()).replace(".", "")
     session = boto3.Session(profile_name=profile)
     client = session.client('cloudfront', verify=verify_ssl)
