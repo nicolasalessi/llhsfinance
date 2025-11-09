@@ -38,7 +38,7 @@ const Home = ({ setCurrentPage }) => (
         Welcome to LLHS Finance Club
       </h2>
       <p className="text-lg text-gray-700 mb-6 text-center">
-        Learn investing, personal finance, and real-world money skills — no experience needed.
+        Learn investing, personal finance, and real-world money skills — no experience needed. Join us!
       </p>
 
       {/* Buttons */}

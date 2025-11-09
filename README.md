@@ -38,7 +38,7 @@ npm install
 # Start the dev server
 npm run dev
 ```
-Now you should be able to view the local development server in a web browser at https://localhost:5173
+Now you should be able to view the local development server in a web browser at [http://localhost:5173](http://localhost:5173)
 
 ### 2. Automated Deployment (GitHub Actions → AWS)
 
@@ -143,4 +143,4 @@ As long as you have the deploy.yml in place and properly configured, the automat
 
 ## Live Site
 
-[https://llhsfinance.org](https://llhsfinance.org)
+[https://llhsfinance.com](https://llhsfinance.com)
