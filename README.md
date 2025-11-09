@@ -29,8 +29,8 @@ Follow these steps to clone the repository and set up your local development env
 
 ### 1. Clone the Repository
 ```bash
-git clone https://github.com/your-username/llhs-finance-club-website.git
-cd llhs-finance-club-website
+git clone https://github.com/nicolasalessi/llhsfinance.git
+cd llhsfinance
 
 # Install modules
 npm install
@@ -38,46 +38,101 @@ npm install
 # Start the dev server
 npm run dev
 ```
+Now you should be able to view the local development server in a web browser at https://localhost:5173
 
-## Deploy Setup
+### 2. Automated Deployment (GitHub Actions → AWS)
 
-The application is deployed using a simple python script and the AWS boto libraries. In order to use the deployment script, you must setup a virtual environment first (this only needs to be done once).
+Every push to the `main` branch automatically builds and deploys the site in about 30 seconds. Ensure that <repo>/.github/workflows/deploy.yml is in place to activate the GitHub actions.
+
+#### How it works
+- **Trigger**: `git push` to `main`  
+- **Build**: `npm install` → `npm run build` (Vite outputs to `dist/`)  
+- **Deploy**: Files are synced to the S3 bucket  
+- **Cache bust**: CloudFront cache is invalidated (`/*`) so visitors instantly see the latest version
+
+#### AWS Setup Summary
+1. **IAM OIDC Identity Provider**  
+   - Provider: `https://token.actions.githubusercontent.com`
+   - Audience: `sts.amazonaws.com`
+
+2. **IAM Role** (`GitHub-LLHSFinance`) - Trust relationship (Web identity)
+    - Trusted entity type: `Web identity`
+    - Identity provider: `token.actions.githubusercontent.com`
+    - Audience: `sts.amazonaws.com`
+    - GitHub organization: `<github_username>`
+    - Github repository: `<github_repo>`
+    - Github branch: `main`
+
+This should produce the following JSON automatically:
+
 ```
-# Ensure the deploy.py script is executable
-chmod +x deploy.py
-
-# Create a python virtual environment
-python3 -m venv venv
-
-# Activate the virtual environment
-source venv/bin/activate
-
-# Install required python modules
-pip install boto3 colorlog textwrap3
-
-# Deactivate the python virtual environment (if not needed)
-deactivate
+{
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Effect": "Allow",
+            "Principal": {
+                "Federated": "<ARN_of_OIDC_Provider"
+            },
+            "Action": "sts:AssumeRoleWithWebIdentity",
+            "Condition": {
+                "StringEquals": {
+                    "token.actions.githubusercontent.com:aud": "sts.amazonaws.com"
+                },
+                "StringLike": {
+                    "token.actions.githubusercontent.com:sub": "repo:<github_username>/<github_repo>:ref:refs/heads/main"
+                }
+            }
+        }
+    ]
+}
 ```
 
-## Deploy
-
-To deploy the application after making changes, execute the deploy script with the correct arguments. This should be executed from within the `project/deploy` directory.
+3. **IAM Role** (`GitHub-LLHSFinance`) - InlinePolicy (LLHSFinance-CF-Access) 
 
 ```
-# Activate the python virtual environment
-source venv/bin/activate
-
-# Run the deploy
-./deploy.py \
-  --conf deploy.json \
-  --proj_dir ../ \
-  --profile your_aws_profile \
-  --build \
-  --env prod
-
-# Deactivate the python virtual environment (if not needed)
-deactivate
+{
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Effect": "Allow",
+            "Action": "cloudfront:CreateInvalidation",
+            "Resource": "<CloudFront_ARN>"
+        }
+    ]
+}
 ```
+
+4. **IAM Role** (`GitHub-LLHSFinance`) - InlinePolicy (LLHSFinance-S3-Access) 
+
+```
+{
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Effect": "Allow",
+            "Action": [
+                "s3:PutObject",
+                "s3:DeleteObject",
+                "s3:ListBucket"
+            ],
+            "Resource": [
+                "arn:aws:s3:::<S3_Bucket_Name>",
+                "arn:aws:s3:::<S3_Bucket_Name>/*"
+            ]
+        }
+    ]
+}
+```
+
+4. **GitHub Actions Workflow**  
+
+As long as you have the deploy.yml in place and properly configured, the automated pushes should work on every checking to `main` as follows:
+
+   - Runs `aws s3 sync dist/ s3://<bucket> --delete`  
+   - Runs `aws cloudfront create-invalidation --distribution-id <id> --paths "/*"`
+
+**Result**: Zero-touch deploys. Commit → push → done. The live site updates worldwide in seconds.
 
 ## Authors
 
