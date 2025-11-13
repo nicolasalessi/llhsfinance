@@ -1,0 +1,37 @@
+[
+  {
+    "name": "Mason Grant",
+    "image": "/assets/headshots/headshot-mason.jpeg",
+    "linkedin": "https://www.linkedin.com/in/mason-grant-916970321/",
+    "title": "President, Investment Lead",
+    "focus": "Leading research into data center infrastructure and AI compute demand."
+  },
+  {
+    "name": "Nico Alessi",
+    "image": "/assets/headshots/headshot-nico.png",
+    "linkedin": "https://www.linkedin.com/in/nicolas-alessi-05111b21/",
+    "title": "Head of Development",
+    "focus": "Exploring next-gen power like advanced batteries, solar tech, and nuclear energy."
+  },
+  {
+    "name": "Alex Alessi",
+    "image": "/assets/headshots/headshot-alex.png",
+    "linkedin": "https://www.linkedin.com/in/alex-alessi-ab511a21/",
+    "title": "Head of Recruiting",
+    "focus": "Interested in real estate ETFs and REITs to own pieces of apartments, malls, and warehouses without buying a whole building."
+  },
+  {
+    "name": "Stephen Cordano",
+    "image": "/assets/headshots/headshot-stephen.jpg",
+    "linkedin": "https://www.linkedin.com/in/stephen-cordano-372bb0394/",
+    "title": "Head of Research",
+    "focus": "Studying cybersecurity companies that keep computers and data safe from hackers."
+  },
+  {
+    "name": "Sameer Raj",
+    "image": "/assets/headshots/headshot-sameer.jpeg",
+    "linkedin": "https://www.linkedin.com/in/sameer-raj-94a983336/",
+    "title": "VP, Marketing",
+    "focus": "Focused on AI tools that help businesses work smarter, like chatbots and smart software."
+  }
+]

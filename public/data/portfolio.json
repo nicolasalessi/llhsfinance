@@ -1,0 +1,46 @@
+{
+  "growth": {
+    "start": 4000,
+    "current": 12553.42,
+    "gainPercent": 153.09,
+    "lastUpdated": "November 2025"
+  },
+  "portfolio": [
+    {
+      "symbol": "APLD",
+      "name": "APPLIED DIGITAL CORP",
+      "quantity": 46,
+      "marketValue": 1684.75,
+      "costBasis": 372.95,
+      "gainDollars": 1311.80,
+      "gainPercent": 351.74
+    },
+    {
+      "symbol": "BITF",
+      "name": "BITFARMS LTD F",
+      "quantity": 401,
+      "marketValue": 2199.73,
+      "costBasis": 1419.28,
+      "gainDollars": 780.45,
+      "gainPercent": 54.99
+    },
+    {
+      "symbol": "CIFR",
+      "name": "CIPHER MNG INC",
+      "quantity": 41,
+      "marketValue": 836.22,
+      "costBasis": 496.51,
+      "gainDollars": 339.71,
+      "gainPercent": 68.42
+    },
+    {
+      "symbol": "IREN",
+      "name": "IREN LTD F",
+      "quantity": 119,
+      "marketValue": 7832.72,
+      "costBasis": 2671.39,
+      "gainDollars": 5161.33,
+      "gainPercent": 193.21
+    }
+  ]
+}

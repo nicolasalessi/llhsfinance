@@ -1,0 +1,13 @@
+# ========================================
+# LLHS Finance Club - robots.txt
+# ========================================
+# Allows all web crawlers by default
+# Restricts nothing — site is public
+
+User-agent: *
+Allow: /
+
+# Sitemap (optional — add when you have one)
+# Sitemap: https://yoursite.com/sitemap.xml
+
+# End of file
